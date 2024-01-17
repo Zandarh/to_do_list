@@ -183,7 +183,8 @@ function showProjectAddModal(){
     newProjectInput.focus();
 }
 //Adds new Project
-function addNewProject(){
+function addNewProject(e){
+    e.preventDefault();
     const newProject = newProjectInput.value
     addProject(newProject);
     availableProjects = getProject();
@@ -234,7 +235,8 @@ function editModal(e){
 editButton.addEventListener('click', editTheProject);
 
 //Edits the project
-function editTheProject(){
+function editTheProject(e){
+    e.preventDefault();
     allTags = document.querySelectorAll('.project-tags');
     const newName = editProject(currentProject, textInputEdit.value);
     allTags.forEach(tag => {
@@ -292,6 +294,7 @@ addTask.addEventListener('click', (e) => {
 });
 
 addATaskBtn.addEventListener('click', (e) => {
+    e.preventDefault();
     taskProject = document.querySelector('#theProjects');
     const theTitle = title.value;
     const theNote  = note.value;
