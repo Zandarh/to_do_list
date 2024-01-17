@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Caluwe</h1>
+            <div class="menu">
+                <button type="button" class="menuBtn"><img class="filter-white" src="./img/menu.svg" alt=""/></button>
+                <button type="button" class="closeBtn" id="close" ><img class="filter-white" src="./img/close.svg" alt=""/></button>
+            </div>
+        </header>
+        <div class="sidebar"></div>
+        <main>
+            <div class="main-container">
+               <div class="main-heading">
+                <h3>Tasks</h3>
+               </div>
+               <div class="main-content">
+                    <div class="content">
+                    </div>
+               </div>
+               <div class="add-taskdiv">
+                <button type="button" class="addTask">Add Task</button>
+               </div>
+            </div>
+        </main>
+    </div>
+    <dialog class="sibarDailog">
+        <div class="dailog-container">
+            <div class="filter-div">
+                <div class="dialog-heading">
+                    <h3>Filters</h3>
+                </div>
+                <div class="filter todos">
+                    <img class="filter-icon filter-white" src="./img/all.svg" alt="">
+                    <p class="tags">All</p>
+                </div>
+                <div class="filter todos">
+                    <img class="filter-icon filter-white"  src="./img/today.svg" alt="">
+                    <p class="tags">Today</p>
+                </div>
+                <div class="filter todos">
+                    <img class="filter-icon filter-white"  src="./img/week.svg" alt="">
+                    <p class="tags">Week</p>
+                </div>
+                <div class="filter todos">
+                    <img class="filter-icon filter-white"  src="./img/month.svg" alt="">
+                    <p class="tags">Month</p>
+                </div>
+            </div>
+            <div class="project-div">
+                <div class="add-project">
+                    <div class="dialog-heading">
+                        <h3>Projects</h3>
+                    </div>
+                    <div class="addbtn">
+                        <button type="button" class="addprojectbtn">
+                            <h3>+</h3>
+                        </button>
+                    </div>
+                </div>
+                <div class="the-projects">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </dialog>
+    <dialog class="dailog-Edit">
+        <div class="dialog-container2">
+            <button type="button" class="closeEdit" id="closeEdit" ><img class="filter-white" src="./img/close.svg" alt=""/></button>
+            <form class="editForm" action="">
+                <div class="dialog-heading">
+                    <h3>Projects</h3>
+                </div>
+                <input class="edit-project" type="text">
+                <button type="button" formmethod="dialog" class="editBtn">Edit Project</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog class="addprojectdialog">
+        <div class="dialog-container3">
+            <button class="closeAdd" id="closeAdd" ><img class="filter-white" src="./img/close.svg" alt=""/></button>
+            </button>
+            <form class="addForm" action="">
+                <div class="dialog-heading">
+                    <h3>Add Project</h3>
+                </div>
+                <input class="addprojecttext" type="text">
+                <button type="button" formmethod="dialog" class="dialogAddProjectBtn">Add Project</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog class="add-task-dialog">
+        <div class="dialog-container4">
+            <form action="" class="addTaskForm">
+                <div class="formdetails">
+                    <label for="tasktitle">Add Task</label>
+                    <input type="text" name="tasktitle" id="tasktitle" required>
+                    <label for="note">Note</label>
+                    <textarea name="note" id="tasknote" cols="30" rows="10" placeholder="Type here..."></textarea>
+                    <div class="moreDetails">
+                        <div class="todo-options">
+                            <label for="project">Project</label>
+                            <select name="projects" id="theProjects">
+                            </select>
+                        </div>
+                        <div class="todo-options">
+                            <label for="date">Date</label>
+                            <input type="date" name="date" id="duedate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="control">
+                    <button type="button" class="menuBtn"><img class="filter-white" src="./img/menu.svg" alt=""/></button>
+                    <button type="button" formmethod="dialog" class="addATask">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+</body>
+</html>
