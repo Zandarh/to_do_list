@@ -1,10 +1,9 @@
 import './style/style.css';
-import {createTodo, render}from "./todos.js";
+import {createTodo, editTodo, deleteTodo, render}from "./todos.js";
 import {checkForProject, todosToday, todosForAWeek, todosForMonth} from "./sort.js";
 import {getProject, deleteProject, editProject, addProject, renderProjects} from './project.js';
 import writeToMain from './main.js';
 import { removeAllChildNodes } from './create.js';
-import {closeMenu, openMenu} from './func.js';
 
 
 const title1 = "Call Mum";
@@ -84,9 +83,19 @@ availableProjects.forEach(project => {
 
 
 // Event listeners
-menuBtn.addEventListener('click', openMenu);
+menuBtn.addEventListener('click', () => {
+    dialog.show();
+    menuBtn.style.display = "none";
+    mainContent.style.display = 'none';
+    close.style.display = "flex";
+});
 close.addEventListener('click', closeMenu);
-
+function closeMenu(){
+    dialog.close();
+    menuBtn.style.display = "flex";
+    mainContent.style.display = 'grid';
+    close.style.display = "none";
+}
 filterTodos.forEach(todoFilter => {
     
         todoFilter.addEventListener('click', () => {
@@ -179,10 +188,11 @@ let editBtn = document.querySelectorAll('.edit');
 let deleteBtn = document.querySelectorAll('.delete');
 let allTags = document.querySelectorAll('.project-tags');
 let currentProject;
-addListerner(editBtn, "click", editModal)
 
+
+addListerner(editBtn, "click", editModal);
 allTags = document.querySelectorAll('.project-filter');
-addListerner(allTags, "click", showProjectTask)
+addListerner(allTags, "click", showProjectTask);
 
 // Sorts tasks by projects
 function showProjectTask(e){
@@ -201,6 +211,7 @@ editButton.addEventListener('click', editTheProject);
 
 //Edits the project
 function editTheProject(){
+    allTags = document.querySelectorAll('.project-tags');
     const newName = editProject(currentProject, textInputEdit.value);
     allTags.forEach(tag => {
         if(tag.textContent == currentProject){
@@ -209,6 +220,7 @@ function editTheProject(){
     });
         editForm.reset();
         editDialog.close();
+        // mainContent.style.display = 'grid';
 }
 
 
@@ -228,6 +240,7 @@ function del(e){
     deleteBtn = document.querySelectorAll('.delete');
     addListerner(deleteBtn, "click", del)
 
+    allTags = document.querySelectorAll('.project-tags');
     let editBtn = document.querySelectorAll('.edit');
     addListerner(editBtn, "click", editModal)
 }
@@ -274,4 +287,3 @@ addATaskBtn.addEventListener('click', (e) => {
 });
 
 
-export {sortToMain}
