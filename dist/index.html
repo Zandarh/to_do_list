@@ -10,8 +10,8 @@
         <header>
             <h1>Caluwe</h1>
             <div class="menu">
-                <button class="menuBtn"><img class="filter-white" src="2d4061552fac064ed076.svg" alt=""/></button>
-                <button class="closeBtn" id="close" ><img class="filter-white" src="97d4c0a10ac97607dc65.svg" alt=""/></button>
+                <button type="button" class="menuBtn"><img class="filter-white" src="2d4061552fac064ed076.svg" alt=""/></button>
+                <button type="button" class="closeBtn" id="close" ><img class="filter-white" src="97d4c0a10ac97607dc65.svg" alt=""/></button>
             </div>
         </header>
         <div class="sidebar"></div>
@@ -21,29 +21,11 @@
                 <h3>Tasks</h3>
                </div>
                <div class="main-content">
-                <div class="content">
-                    <div class="no-task-div">
-                        <!-- <h4 class="no-task">No Task Found</h4> -->
+                    <div class="content">
                     </div>
-                    <div class="task-div">
-                        <input type="radio" name="" id="">
-                        <p>Call Alex</p>
-                        <div class="delbtn">
-                            <img class="'filter-white'" src="bde675c38d54979f589e.svg" alt="">
-                        </div>
-                    </div>
-                    <div class="task-div">
-                        <input type="radio" name="" id="">
-                        <p>Drink Water</p>
-                        <div class="delbtn">
-                            <img class="'filter-white'" src="bde675c38d54979f589e.svg" alt="">
-                        </div>
-                    </div>
-                    
-                </div>
                </div>
                <div class="add-taskdiv">
-                <button>Add Task</button>
+                <button type="button" class="addTask">Add Task</button>
                </div>
             </div>
         </main>
@@ -77,7 +59,7 @@
                         <h3>Projects</h3>
                     </div>
                     <div class="addbtn">
-                        <button class="addprojectbtn">
+                        <button type="button" class="addprojectbtn">
                             <h3>+</h3>
                         </button>
                     </div>
@@ -90,13 +72,13 @@
     </dialog>
     <dialog class="dailog-Edit">
         <div class="dialog-container2">
-            <button class="closeEdit" id="closeEdit" ><img class="filter-white" src="97d4c0a10ac97607dc65.svg" alt=""/></button>
+            <button type="button" class="closeEdit" id="closeEdit" ><img class="filter-white" src="97d4c0a10ac97607dc65.svg" alt=""/></button>
             <form class="editForm" action="">
                 <div class="dialog-heading">
                     <h3>Projects</h3>
                 </div>
                 <input class="edit-project" type="text">
-                <button formmethod="dialog" class="editBtn">Edit Project</button>
+                <button type="button" formmethod="dialog" class="editBtn">Edit Project</button>
             </form>
         </div>
     </dialog>
@@ -109,7 +91,34 @@
                     <h3>Add Project</h3>
                 </div>
                 <input class="addprojecttext" type="text">
-                <button formmethod="dialog" class="dialogAddProjectBtn">Add Project</button>
+                <button type="button" formmethod="dialog" class="dialogAddProjectBtn">Add Project</button>
+            </form>
+        </div>
+    </dialog>
+    <dialog class="add-task-dialog">
+        <div class="dialog-container4">
+            <form action="" class="addTaskForm">
+                <div class="formdetails">
+                    <label for="tasktitle">Add Task</label>
+                    <input type="text" name="tasktitle" id="tasktitle" required>
+                    <label for="note">Note</label>
+                    <textarea name="note" id="tasknote" cols="30" rows="10" placeholder="Type here..."></textarea>
+                    <div class="moreDetails">
+                        <div class="todo-options">
+                            <label for="project">Project</label>
+                            <select name="projects" id="theProjects">
+                            </select>
+                        </div>
+                        <div class="todo-options">
+                            <label for="date">Date</label>
+                            <input type="date" name="date" id="duedate" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="control">
+                    <button type="button" class="menuBtn"><img class="filter-white" src="2d4061552fac064ed076.svg" alt=""/></button>
+                    <button type="button" formmethod="dialog" class="addATask">Add Task</button>
+                </div>
             </form>
         </div>
     </dialog>
