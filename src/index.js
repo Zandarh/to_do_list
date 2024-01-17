@@ -61,14 +61,9 @@ const dueDate = document.querySelector('#duedate');
 let taskProject = document.querySelector('#theProjects');
 const addATaskBtn = document.querySelector('.addATask');
 let check = document.querySelectorAll('.check');
-
-const availableProjects = getProject();
-availableProjects.forEach(project => {
-    const option = document.createElement('option');
-    option.value = project;
-    option.innerText = project;
-    taskProject.appendChild(option);
-});
+const backBtn = document.querySelector('.backBtn');
+let delTask = document.querySelectorAll('.del-task');
+let availableProjects = getProject();
 
 (function(){
     const thisprojects = render();
@@ -79,6 +74,8 @@ availableProjects.forEach(project => {
     renderProjects(tags)
     check = document.querySelectorAll('.check');
     addListerner(check, "change", thechecker)
+    delTask = document.querySelectorAll('.del-task')
+    addListerner(delTask, "click", deleteTheTask)
 })();
 
 
@@ -90,6 +87,7 @@ menuBtn.addEventListener('click', () => {
     close.style.display = "flex";
 });
 close.addEventListener('click', closeMenu);
+
 function closeMenu(){
     dialog.close();
     menuBtn.style.display = "flex";
@@ -127,6 +125,8 @@ function sortToMain(project){
     dialog.close();
     check = document.querySelectorAll('.check');
     addListerner(check, "change", thechecker)
+    delTask = document.querySelectorAll('.del-task')
+    addListerner(delTask, "click", deleteTheTask)
 }
 
 //Adds EventListerners to reduce repeat code
@@ -141,6 +141,7 @@ function thechecker(e){
     if(e.target.checked){
         e.target.nextElementSibling.style.textDecoration = "line-through";
         e.target.parentElement.nextElementSibling.style.display = 'flex';
+        const delTask = 
         e.target.parentElement.parentElement.setAttribute('style', "background-color: transparent");
     }
     else{
@@ -150,11 +151,21 @@ function thechecker(e){
         
     }
 }
-//Event Listeners
 
+//deletes a task
+function deleteTheTask(e){
+    const title = e.target.parentElement.firstElementChild.lastElementChild.textContent;
+    deleteTodo(title);
+    content.removeChild(e.target.parentElement);
+    const thisprojects = render();
+    sortToMain(thisprojects);
+}
+
+//Event Listeners
 tags.addEventListener('touchmove', tagsEvent);
 addProjectBtn.addEventListener('click', showProjectAddModal);
 addNewProjectBtn.addEventListener('click', addNewProject);
+backBtn.addEventListener('click', closeAddTask);
 
 
 function tagsEvent(){
@@ -169,19 +180,31 @@ function tagsEvent(){
 // Opens the addProject Modal
 function showProjectAddModal(){
     addProjectDialog.showModal();
+    newProjectInput.focus();
 }
 //Adds new Project
 function addNewProject(){
     const newProject = newProjectInput.value
     addProject(newProject);
+    availableProjects = getProject();
     renderProjects(tags)
     deleteBtn = document.querySelectorAll('.delete');
     addListerner(deleteBtn, 'click', del)
     
     let editBtn = document.querySelectorAll('.edit');
-    addListerner(editBtn, "click", editModal)
+    addListerner(editBtn, "click", editModal);
+    
+    allTags = document.querySelectorAll('.project-filter');
+    addListerner(allTags, "click", showProjectTask);
+
     addForm.reset();
     addProjectDialog.close();
+}
+
+//close the add task panel
+function closeAddTask(){
+    addTaskDialog.close();
+    mainContent.style.display = 'grid';
 }
 
 let editBtn = document.querySelectorAll('.edit');
@@ -204,6 +227,7 @@ function showProjectTask(e){
 function editModal(e){
     currentProject = e.target.parentElement.parentElement.firstElementChild.lastElementChild.textContent;
     editDialog.showModal()
+    textInputEdit.focus();
     textInputEdit.setAttribute('value', currentProject);   
 }
 
@@ -258,11 +282,12 @@ closeEdit.addEventListener('click', (e) => {
     dialog.close();
     close.style.display = "none";
     menuBtn.style.display = "flex";
-    mainContent.style.display = 'none';
+    mainContent.style.display = 'grid';
 });
 
 addTask.addEventListener('click', (e) => {
     addTaskDialog.showModal();
+    addTaskProject();
     mainContent.style.display = 'none';
 });
 
@@ -281,9 +306,19 @@ addATaskBtn.addEventListener('click', (e) => {
         addTaskForm.reset();
         mainContent.style.display = 'grid';
         addTaskDialog.close();
+        check = document.querySelectorAll('.check');
+        addListerner(check, "change", thechecker)
+        delTask = document.querySelectorAll('.del-task')
+        addListerner(delTask, "click", deleteTheTask)
+        
     }
-    check = document.querySelectorAll('.check');
-    addListerner(check, "change", thechecker)
 });
 
-
+function addTaskProject(){
+    availableProjects.forEach(project => {
+        const option = document.createElement('option');
+        option.value = project;
+        option.innerText = project;
+        taskProject.appendChild(option);
+    });
+}

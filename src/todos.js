@@ -14,11 +14,9 @@ function todosCreator() {
         allTodos.unshift(todos);
     }
 
-    function deleteTodo(todos){
-        console.log(todos.title);
-        const index = allTodos.findIndex(theTodo => theTodo.title === todos.title);
-        console.log(index);
-       allTodos.shift(index);
+    function deleteTodo(title){
+        const index = allTodos.findIndex(theTodo => theTodo.title === title);
+        allTodos.shift(index);
     } 
     function editTodo(todos, newTitle, newNote, newDueDate, newProject){
         if(newTitle != undefined)
