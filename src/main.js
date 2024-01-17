@@ -24,6 +24,7 @@ export default function writeToMain(todos, node){
             checker.className = "check";
 
             const task = document.createElement('p');
+            task.className = "thetasktitle";
             task.innerText = todo.title;
             taskHolder.appendChild(checker);
             taskHolder.appendChild(task);

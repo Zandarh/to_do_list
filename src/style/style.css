@@ -68,6 +68,7 @@ div.menu{
     align-items: center;
     justify-content: flex-end;
 }
+button.backBtn,
 button.delbtn,
 button.closeAdd,
 button.closeEdit,
@@ -98,7 +99,7 @@ div.main-container{
     border-radius: 20px;
     margin: auto;
     display: grid;
-    grid-template-rows: 0.2fr 3fr 0.2fr;
+    grid-template-rows: 0.2fr 3fr 0.4fr;
     padding: 15px;
     gap: 20px;
 }
@@ -120,25 +121,28 @@ div.main-content{
 div.add-taskdiv{
     grid-area: 3/1/4/2;
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 5px;
 }
 
-div.add-taskdiv > button{
+div.add-taskdiv > button.addTask{
     text-transform: uppercase;
     font-size: 1.2rem;
-    padding: 20px;
+    padding: 15px;
     border-radius: 20px;
     background-color: var(--heading);
     color: var(--color-bg);
     cursor: pointer;
     border: none;
 }
+div.add-taskdiv > button.backBtn > img{
+    width: 80px;
+}
 dialog{
     top: 100px;
-    left: 60px;
-    width: 70%;
+    left: 20px;
+    width: 90%;
     height: 80%;
     border: none;
     border-radius: 10px;
@@ -148,7 +152,7 @@ dialog.add-task-dialog{
     width: 90%;
     left: 20px;
     height: 60%;
-    top: 150px;
+    top: 120px;
 }
 div.addbtn{
     width: 100%;
@@ -277,7 +281,7 @@ div.task-div{
     display: flex;
     width: 100%;
     background-color: #3d3c3c;
-    height: 1.7rem;
+    height: 2.4rem;
     align-items: center;
     justify-content: space-between;
     border-radius: 15px;
@@ -285,6 +289,9 @@ div.task-div{
 }
 div.task-div img{
     width: 8%;
+}
+p.thetasktitle{
+    font-size: 1.2rem;
 }
 div.right{
     display: flex;
