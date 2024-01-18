@@ -7,7 +7,7 @@ let projects = ["default"];
 const dbName = "projects";
 (function(){
     const testprojects = getFromDb(dbName);
-    if(testprojects.length == 0){
+    if(!testprojects){
         saveToDb(dbName, projects);
     }
 })();

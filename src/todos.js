@@ -6,7 +6,7 @@ let allTodos = [];
 const dbName = "allTodos";
 (function(){
     const testtodo = getFromDb(dbName);
-    if(testtodo.length == 0){
+    if(!testtodo){
         saveToDb(dbName, allTodos);
     }
 })();
