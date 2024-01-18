@@ -38,12 +38,12 @@ const menuBtn = document.querySelector('.menuBtn');
 const close = document.querySelector('#close');
 const dialog = document.querySelector('.sibarDailog');
 const filterTodos = document.querySelectorAll('.todos');
-const tags = document.querySelector('.the-projects');
+const theTags = document.querySelectorAll('.the-projects');
 const editDialog = document.querySelector('.dailog-Edit');
 const textInputEdit = document.querySelector('.edit-project');
 const editButton = document.querySelector('.editBtn');
 const editForm = document.querySelector('.editForm');
-const addProjectBtn = document.querySelector('.addprojectbtn');
+let addProjectBtn = document.querySelectorAll('.addprojectbtn');
 const addProjectDialog = document.querySelector('.addprojectdialog');
 const newProjectInput = document.querySelector('.addprojecttext');
 const addNewProjectBtn = document.querySelector('.dialogAddProjectBtn')
@@ -64,11 +64,45 @@ let check = document.querySelectorAll('.check');
 const backBtn = document.querySelector('.backBtn');
 let delTask = document.querySelectorAll('.del-task');
 let availableProjects = getProject();
+const sidebar = document.querySelector('.sidebar');
+const overlay = document.querySelector('.overlay');
+let tags;
+
+//Differentiating between the mobile and large screen sidebar
+(function(){  
+    if(window.innerWidth >= 1024){
+        sidebar.style.display = "flex";
+        theTags.forEach(tag => {
+            if (tag.parentElement.parentElement.parentElement.className == "sidebar"){
+                tags = tag;
+            }
+        }); 
+        addProjectBtn.forEach(btn => {
+            if(btn.parentElement.parentElement.parentElement.parentElement.parentElement.className == "sidebar"){
+                addProjectBtn = btn;
+            }
+        });
+    }
+    else{
+        theTags.forEach(tag => {
+            if (tag.parentElement.parentElement.parentElement.className == "sibarDailog"){
+                tags = tag;
+            }
+        });
+        addProjectBtn.forEach(btn => {
+            if(btn.parentElement.parentElement.parentElement.parentElement.parentElement.className == "sibarDailog"){
+                addProjectBtn = btn;
+            }
+        });        
+    }
+})();
+
+
+
+
 
 (function(){
     const thisprojects = render();
-    localStorage.clear();
-    console.log(localStorage.length);
     removeAllChildNodes(content);
     writeToMain(thisprojects, content);
     renderProjects(tags)
@@ -82,6 +116,7 @@ let availableProjects = getProject();
 // Event listeners
 menuBtn.addEventListener('click', () => {
     dialog.show();
+    overlay.style.display = 'block'
     menuBtn.style.display = "none";
     mainContent.style.display = 'none';
     close.style.display = "flex";
@@ -90,6 +125,7 @@ close.addEventListener('click', closeMenu);
 
 function closeMenu(){
     dialog.close();
+    overlay.style.display = 'none'
     menuBtn.style.display = "flex";
     mainContent.style.display = 'grid';
     close.style.display = "none";
@@ -123,6 +159,8 @@ function sortToMain(project){
     menuBtn.style.display = "flex";
     close.style.display = "none";
     dialog.close();
+    if(window.innerWidth < 1024)
+        overlay.style.display = 'none';
     check = document.querySelectorAll('.check');
     addListerner(check, "change", thechecker)
     delTask = document.querySelectorAll('.del-task')
@@ -141,14 +179,10 @@ function thechecker(e){
     if(e.target.checked){
         e.target.nextElementSibling.style.textDecoration = "line-through";
         e.target.parentElement.nextElementSibling.style.display = 'flex';
-        const delTask = 
-        e.target.parentElement.parentElement.setAttribute('style', "background-color: transparent");
     }
     else{
         e.target.nextElementSibling.style.textDecoration = "none";
-        e.target.parentElement.nextElementSibling.style.display = 'none';
-        e.target.parentElement.parentElement.setAttribute('style', "background-color: #3d3c3c");
-        
+        e.target.parentElement.nextElementSibling.style.display = 'none';   
     }
 }
 
@@ -180,7 +214,9 @@ function tagsEvent(){
 // Opens the addProject Modal
 function showProjectAddModal(){
     addProjectDialog.showModal();
+    overlay.style.display = 'block';
     newProjectInput.focus();
+    // dialog.style.display = "none";
 }
 //Adds new Project
 function addNewProject(e){
@@ -200,11 +236,13 @@ function addNewProject(e){
 
     addForm.reset();
     addProjectDialog.close();
+    overlay.style.display = 'none';
 }
 
 //close the add task panel
 function closeAddTask(){
     addTaskDialog.close();
+    overlay.style.display = 'none';
     mainContent.style.display = 'grid';
 }
 
@@ -228,6 +266,7 @@ function showProjectTask(e){
 function editModal(e){
     currentProject = e.target.parentElement.parentElement.firstElementChild.lastElementChild.textContent;
     editDialog.showModal()
+    overlay.style.display = 'block';
     textInputEdit.focus();
     textInputEdit.setAttribute('value', currentProject);   
 }
@@ -246,6 +285,7 @@ function editTheProject(e){
     });
         editForm.reset();
         editDialog.close();
+        overlay.style.display = 'none';
         // mainContent.style.display = 'grid';
 }
 
@@ -274,6 +314,7 @@ function del(e){
 closeAdd.addEventListener('click', (e) => {
     addProjectDialog.close();
     dialog.close();
+    overlay.style.display = 'none';
     close.style.display = "none";
     menuBtn.style.display = "flex";
     mainContent.style.display = 'grid';
@@ -285,10 +326,12 @@ closeEdit.addEventListener('click', (e) => {
     close.style.display = "none";
     menuBtn.style.display = "flex";
     mainContent.style.display = 'grid';
+    overlay.style.display = 'none';
 });
 
 addTask.addEventListener('click', (e) => {
     addTaskDialog.showModal();
+    overlay.style.display = 'block';
     addTaskProject();
     mainContent.style.display = 'none';
 });
@@ -314,10 +357,12 @@ addATaskBtn.addEventListener('click', (e) => {
         delTask = document.querySelectorAll('.del-task')
         addListerner(delTask, "click", deleteTheTask)
         
+        
     }
 });
 
 function addTaskProject(){
+    removeAllChildNodes(taskProject);
     availableProjects.forEach(project => {
         const option = document.createElement('option');
         option.value = project;

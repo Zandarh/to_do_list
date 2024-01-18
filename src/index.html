@@ -6,16 +6,16 @@
     <title>Todo List</title>
 </head>
 <body>
+    <div class="overlay"></div>
     <div class="container">
-        <header>
-            <h1>Caluwe</h1>
+        <header >
+            <h1>ZenList</h1>
             <div class="menu">
-                <button type="button" class="menuBtn"><img class="filter-white" src="./img/menu.svg" alt=""/></button>
-                <button type="button" class="closeBtn" id="close" ><img class="filter-white" src="./img/close.svg" alt=""/></button>
+                <button type="button" class="menuBtn"><img class="menuB" src="./img/menu.svg" alt=""/></button>
+                <button type="button" class="closeBtn" id="close" ><img class="menuB" src="./img/close.svg" alt=""/></button>
             </div>
         </header>
-        <div class="sidebar"></div>
-        <main>
+        <div class="main">
             <div class="main-container">
                <div class="main-heading">
                 <h3>Tasks</h3>
@@ -28,9 +28,49 @@
                 <button type="button" class="addTask">Add Task</button>
                </div>
             </div>
-        </main>
+        </div>
+        <div style="display: none;" class="sidebar">
+            <div class="dailog-container">
+                <div class="filter-div">
+                    <div class="dialog-heading">
+                        <h3>Filters</h3>
+                    </div>
+                    <div class="filter todos">
+                        <img class="filter-icon filter-white" src="./img/all.svg" alt="">
+                        <p class="tags">All</p>
+                    </div>
+                    <div class="filter todos">
+                        <img class="filter-icon filter-white"  src="./img/today.svg" alt="">
+                        <p class="tags">Today</p>
+                    </div>
+                    <div class="filter todos">
+                        <img class="filter-icon filter-white"  src="./img/week.svg" alt="">
+                        <p class="tags">Week</p>
+                    </div>
+                    <div class="filter todos">
+                        <img class="filter-icon filter-white"  src="./img/month.svg" alt="">
+                        <p class="tags">Month</p>
+                    </div>
+                </div>
+                <div class="project-div">
+                    <div class="add-project">
+                        <div class="dialog-heading">
+                            <h3>Projects</h3>
+                        </div>
+                        <div class="addbtn">
+                            <button type="button" class="addprojectbtn">
+                                <h3>+</h3>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="the-projects">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <dialog class="sibarDailog">
+    <dialog class="sibarDailog"> 
         <div class="dailog-container">
             <div class="filter-div">
                 <div class="dialog-heading">
@@ -65,7 +105,7 @@
                     </div>
                 </div>
                 <div class="the-projects">
-                    </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -100,7 +140,7 @@
             <form action="" class="addTaskForm">
                 <div class="formdetails">
                     <label for="tasktitle">Add Task</label>
-                    <input type="text" name="tasktitle" id="tasktitle" required>
+                    <input placeholder="Task Title" type="text" name="tasktitle" id="tasktitle" required>
                     <label for="note">Note</label>
                     <textarea name="note" id="tasknote" cols="30" rows="10" placeholder="Type here..."></textarea>
                     <div class="moreDetails">
