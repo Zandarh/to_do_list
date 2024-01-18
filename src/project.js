@@ -1,21 +1,31 @@
-import { render } from "./todos.js";
+import {deleteByProject } from "./todos.js";
 import {createProject} from './create.js';
+import {saveToDb, getFromDb} from './db.js';
 
 
-const projects = ["default"];
+let projects = ["default"];
+const dbName = "projects";
+(function(){
+    const testprojects = getFromDb(dbName);
+    if(testprojects.length == 0){
+        console.log(projects);
+        saveToDb(dbName, projects);
+    }
+})();
 
 // Sort by Projects
 function projectSort(){
-    
-    const allTodos = render();
 
     function addProject(projectName){
         if(!projectName)
             return;
         projects.unshift(projectName);
+        saveToDb(dbName, projects);
     }
     
     function editProject(oldProjectName, newProjectName){
+        projects = getFromDb(dbName)
+
         if(!newProjectName)
             return;
         for(let i = 0; i < projects.length; i++){
@@ -23,19 +33,26 @@ function projectSort(){
                 projects[i] = newProjectName
             }
         }
+        saveToDb(dbName, projects);
         return newProjectName;
     }
     function deleteProject(projectName){
+        projects = getFromDb(dbName)
+
         for(let i = 0; i < projects.length; i++){
             if(projects[i] == projectName){
                 projects.splice(i, 1);
             }
         }
+        saveToDb(dbName, projects);
+        deleteByProject(projectName);
     }
     function renderProjects(tags){
-            createProject(projects, tags);
+        projects = getFromDb(dbName)
+        createProject(projects, tags);
     }
     function getProject(){
+        projects = getFromDb(dbName);
         return projects;
     }
     return {getProject, deleteProject, editProject, addProject, renderProjects}

@@ -2,36 +2,11 @@ import './style/style.css';
 import {createTodo, editTodo, deleteTodo, render}from "./todos.js";
 import {checkForProject, todosToday, todosForAWeek, todosForMonth} from "./sort.js";
 import {getProject, deleteProject, editProject, addProject, renderProjects} from './project.js';
-import writeToMain from './main.js';
+import {writeAllTask, showEachTask} from './main.js';
 import { removeAllChildNodes } from './create.js';
 
-
-const title1 = "Call Mum";
-const note1 = "Very Important";
-const dueDate1 = "2024-01-13";
-const project1 = "work";
-const checked = true;
-
-
-const todos1 = createTodo(title1, note1, dueDate1, project1, checked);
-
-const title2 = "Read on Dom";
-const note2 = "Pheww!";
-const dueDate2 = "2024-03-21";
-
-const todos2 = createTodo(title2, note2, dueDate2);
-
-const title3 = "Alex";
-const note3 = "My life";
-const dueDate3 = "2024-01-19";
-const project3 = "personal"
-
-const todos3 = createTodo(title3, note3, dueDate3, project3);
-
-
-addProject("work");
-addProject("personal");
-addProject("fun");
+const todosTitle = "Click To Learn How To Use"
+createTodo(todosTitle, "my Note", "default");
 
 //Dome Cache
 const menuBtn = document.querySelector('.menuBtn');
@@ -66,6 +41,8 @@ let delTask = document.querySelectorAll('.del-task');
 let availableProjects = getProject();
 const sidebar = document.querySelector('.sidebar');
 const overlay = document.querySelector('.overlay');
+let eachTask = document.querySelectorAll('.thetasktitle');
+const taskViewer = document.querySelector('.main-task-viewer')
 let tags;
 
 //Differentiating between the mobile and large screen sidebar
@@ -104,7 +81,10 @@ let tags;
 (function(){
     const thisprojects = render();
     removeAllChildNodes(content);
-    writeToMain(thisprojects, content);
+    writeAllTask(thisprojects, content);
+
+    eachTask = document.querySelectorAll('.thetasktitle');
+    addListerner(eachTask, 'click', showTask);
     renderProjects(tags)
     check = document.querySelectorAll('.check');
     addListerner(check, "change", thechecker)
@@ -154,7 +134,9 @@ filterTodos.forEach(todoFilter => {
 
 function sortToMain(project){
     removeAllChildNodes(content);
-    writeToMain(project, content)
+    writeAllTask(project, content);
+    eachTask = document.querySelectorAll('.thetasktitle');
+    addListerner(eachTask, 'click', showTask);
     mainContent.style.display = 'grid';
     menuBtn.style.display = "flex";
     close.style.display = "none";
@@ -190,7 +172,8 @@ function thechecker(e){
 function deleteTheTask(e){
     const title = e.target.parentElement.firstElementChild.lastElementChild.textContent;
     deleteTodo(title);
-    content.removeChild(e.target.parentElement);
+    // console.log(e.target.parentElement);
+    // content.removeChild(e.target.parentElement);
     const thisprojects = render();
     sortToMain(thisprojects);
 }
@@ -344,11 +327,12 @@ addATaskBtn.addEventListener('click', (e) => {
     const theDueDate = dueDate.value;
     const theProject = taskProject.value;
     if(theTitle && theDueDate){
-        const todos = createTodo(theTitle, theNote, theDueDate, theProject);
-        localStorage.setItem("Todos", JSON.stringify({title: theTitle, note: theNote, dueDate: theDueDate, theProject, }));
+        createTodo(theTitle, theNote, theDueDate, theProject);
         const thisprojects = render();
         removeAllChildNodes(content);
-        writeToMain(thisprojects, content);
+        writeAllTask(thisprojects, content);
+        eachTask = document.querySelectorAll('.thetasktitle');
+        addListerner(eachTask, 'click', showTask);
         addTaskForm.reset();
         mainContent.style.display = 'grid';
         addTaskDialog.close();
@@ -356,8 +340,7 @@ addATaskBtn.addEventListener('click', (e) => {
         addListerner(check, "change", thechecker)
         delTask = document.querySelectorAll('.del-task')
         addListerner(delTask, "click", deleteTheTask)
-        
-        
+        overlay.style.display = 'none';     
     }
 });
 
@@ -368,5 +351,17 @@ function addTaskProject(){
         option.value = project;
         option.innerText = project;
         taskProject.appendChild(option);
+    });
+}
+
+function showTask(e){
+    const title = e.target.textContent;
+    mainContent.style.display = "none";
+    taskViewer.style.display = "grid";
+    const todos = render();
+    todos.forEach(todo => {
+        if(todo.title = title){
+            showEachTask(todo, taskViewer);
+        }
     });
 }
