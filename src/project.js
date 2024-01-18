@@ -10,6 +10,10 @@ const dbName = "projects";
     if(!testprojects){
         saveToDb(dbName, projects);
     }
+    else if (testprojects.length == 0){
+        console.log(projects);
+        saveToDb(dbName, projects);
+    }
 })();
 
 // Sort by Projects

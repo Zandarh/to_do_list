@@ -5,8 +5,9 @@ import {getProject, deleteProject, editProject, addProject, renderProjects} from
 import {writeAllTask, showEachTask} from './main.js';
 import { removeAllChildNodes } from './create.js';
 
-const todosTitle = "Click To Learn How To Use"
-createTodo(todosTitle, "my Note", "default");
+// const todosTitle = "Click To Learn How To Use"
+// createTodo(todosTitle, "my Note", "default");
+
 
 //Dome Cache
 const menuBtn = document.querySelector('.menuBtn');
@@ -283,6 +284,11 @@ function del(e){
     const projectName = e.target.parentElement.parentElement.firstElementChild.lastElementChild.textContent;
     deleteProject(projectName);
     renderProjects(tags);
+
+    const thisprojects = render();
+    removeAllChildNodes(content);
+    writeAllTask(thisprojects, content);
+    
     allTags = document.querySelectorAll('.project-tags');
     addListerner(allTags, "click", showProjectTask)
 
@@ -365,6 +371,3 @@ function showTask(e){
         }
     });
 }
-
-
-localStorage.clear();
