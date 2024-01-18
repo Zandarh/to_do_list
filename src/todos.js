@@ -3,10 +3,15 @@ import {saveToDb, getFromDb} from './db.js';
 
 
 let allTodos = [];
-
+const dbName = "allTodos";
+(function(){
+    const testtodo = getFromDb(dbName);
+    if(testtodo.length == 0){
+        saveToDb(dbName, allTodos);
+    }
+})();
 
 function todosCreator() {
-    const dbName = "allTodos";
 
     function createTodo(title, note, dueDate, project, checked){
         const todos = new Todos(title, note, dueDate, project, checked);

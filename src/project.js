@@ -8,7 +8,6 @@ const dbName = "projects";
 (function(){
     const testprojects = getFromDb(dbName);
     if(testprojects.length == 0){
-        console.log(projects);
         saveToDb(dbName, projects);
     }
 })();
