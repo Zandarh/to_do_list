@@ -365,3 +365,6 @@ function showTask(e){
         }
     });
 }
+
+
+localStorage.clear();
