@@ -395,6 +395,7 @@ function showTask(e){
 // Closes the more screen on each task
 function goBack(e){
     taskViewer.style.display = "none";
+    menuBtn.style.display = "flex";
     mainContent.style.display = "grid";
     removeAllChildNodes(taskViewer);
 }
