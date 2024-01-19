@@ -61,6 +61,7 @@ function writeToMain(){
         folderImg.src = folder;
         const projectName = document.createElement('h4');
         projectName.innerText = todo.project;
+        projectName.className = "projectname";
 
         taskDetail.appendChild(folderImg);
         taskDetail.appendChild(projectName);

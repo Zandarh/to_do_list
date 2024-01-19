@@ -82,7 +82,8 @@ div.main-task-viewer *p{
     }
     div.taskheading > h2,
     p.thenote,
-    p.date{
+    p.date,
+    .projectname{
         color: var(--color-bg);
     }
 }
@@ -249,10 +250,10 @@ div.todoinfo{
 }
 div.todoinfo > img{
     width: 20px;
-    opacity: 0.4;
+    opacity: 0.6;
 }
 div.todoinfo > h4{
-    opacity: 0.4;
+    opacity: 0.6;
     font-size: 0.9rem;
 }
 div.taskheading {
