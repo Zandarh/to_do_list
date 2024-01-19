@@ -4,10 +4,14 @@ import {saveToDb, getFromDb} from './db.js';
 
 let allTodos = [];
 const dbName = "allTodos";
+
 (function(){
     const testtodo = getFromDb(dbName);
     if(!testtodo){
         saveToDb(dbName, allTodos);
+    }
+    else if (testtodo.length == 0){
+        saveToDb(dbName, allTodos)
     }
 })();
 
@@ -64,5 +68,6 @@ const deleteTodo = todosCreator().deleteTodo;
 const editTodo = todosCreator().editTodo;
 const render = todosCreator().render;
 const deleteByProject = todosCreator().deleteByProject;
+
 
 export { deleteByProject, createTodo, deleteTodo, render, editTodo}

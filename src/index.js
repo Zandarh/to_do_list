@@ -5,9 +5,23 @@ import {getProject, deleteProject, editProject, addProject, renderProjects} from
 import {writeAllTask, showEachTask} from './main.js';
 import { removeAllChildNodes } from './create.js';
 
-// const todosTitle = "Click To Learn How To Use"
-// createTodo(todosTitle, "my Note", "default");
+(function(){
+    window.localStorage.setItem("count", "1")
+    const todosTitle = "Click To Learn More";
+    const todoNote = `-You can add Task and segment them into projects.
 
+    -Click each task title to see more details about the task
+
+    -Click the plus button to add new projects.
+
+    -Checkout tasks as completed and deleted them afterwards.
+
+    -Thank you`;
+    const date = "2024-1-19";
+    if(localStorage.getItem("count") !== "1"){
+        createTodo(todosTitle, todoNote, date, "default");
+    }
+})();
 
 //Dome Cache
 const menuBtn = document.querySelector('.menuBtn');
@@ -100,6 +114,7 @@ menuBtn.addEventListener('click', () => {
     overlay.style.display = 'block'
     menuBtn.style.display = "none";
     mainContent.style.display = 'none';
+    taskViewer.style.display = "none";
     close.style.display = "flex";
 });
 close.addEventListener('click', closeMenu);
@@ -366,8 +381,16 @@ function showTask(e){
     taskViewer.style.display = "grid";
     const todos = render();
     todos.forEach(todo => {
-        if(todo.title = title){
+        if(todo.title == title){
             showEachTask(todo, taskViewer);
+            const backToAll = document.querySelector('.backToAll');
+            backToAll.addEventListener('click', goBack);
         }
     });
+}
+
+function goBack(e){
+    taskViewer.style.display = "none";
+    mainContent.style.display = "grid";
+    removeAllChildNodes(taskViewer);
 }

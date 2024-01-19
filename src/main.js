@@ -1,5 +1,6 @@
 import Del from './img/delete.svg';
 import Back from './img/back.svg';
+import folder from './img/folder.svg';
 
 function writeToMain(){
 
@@ -49,37 +50,61 @@ function writeToMain(){
     }
     function showEachTask(todo, node){
 
-        const contentDiv = document.createElement('div');
-        contentDiv.className = 'task-div';
+        const taskProject = document.createElement('div');
+        taskProject.className = 'taskproject';
     
-        const task = document.createElement('div');
-        task.className = 'task-title-div';
+        const taskDetail = document.createElement('div');
+        taskDetail.className = 'todoinfo';
     
-        const taskTitle = document.createElement('h3');
-        taskTitle.className = "task-title"
-        taskTitle.innerText = todo.title
+        const folderImg = document.createElement('img');
+        folderImg.className = "filter-white";
+        folderImg.src = folder;
+        const projectName = document.createElement('h4');
+        projectName.innerText = todo.project;
 
-        task.appendChild(taskTitle);
+        taskDetail.appendChild(folderImg);
+        taskDetail.appendChild(projectName);
+        
+        const taskHeading = document.createElement('div');
+        taskHeading.className = "taskheading";
+
+        taskProject.appendChild(taskDetail);
+        taskProject.appendChild(taskHeading);
+
+        const taskTitle = document.createElement('h2');
+        taskTitle.innerText = todo.title
+        const line = document.createElement('hr');
+
+        taskHeading.appendChild(taskTitle);
+        taskHeading.appendChild(line);
+
+
 
         const noteDiv = document.createElement('div');
-        noteDiv.className = 'note-div';
+        noteDiv.className = 'noteDiv';
 
         const note = document.createElement('p');
         note.innerText = todo.note;
 
         noteDiv.appendChild(note);
 
-        const backDiv = document.createElement('div');
+        const taskControl = document.createElement('div');
+        taskControl.className = "taskControl";
         const backButton = document.createElement('img');
-        backButton.classList.add('backImg', 'filter-white')
-        backButton.className = "backDiv";
+        backButton.classList.add('backToAll', 'filter-white')
         backButton.src = Back;
 
-        backDiv.appendChild(backButton);
+        const date = document.createElement('p');
+        date.innerText = todo.dueDate;
+        date.className = "date";
 
-        contentDiv.appendChild(task);
-        contentDiv.appendChild(noteDiv);
-        node.appendChild(contentDiv);
+        taskControl.appendChild(backButton);
+        taskControl.appendChild(date);
+
+
+        node.appendChild(taskProject);
+        node.appendChild(noteDiv);
+        node.appendChild(taskControl);
     }
     return {writeAllTask, showEachTask}
 }

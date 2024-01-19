@@ -15,6 +15,9 @@
 .filter > p{
     color: var(--color-fg);
 }
+div.taskheading > h2{
+    color: var(--color-fg);
+}
 dialog{
     background-color: #272727;
 }
@@ -70,9 +73,13 @@ p.thetasktitle{
     input#duedate{
         background-color: #d1cdcd;
     }
-    input.addprojecttext{
-        background-color: #d1cdcd;
-}
+    form.addForm > input,
+    form.editForm > input{
+        background-color: #d1cdcd; 
+    }
+    div.taskheading > h2{
+        color: var(--color-bg);
+    }
 }
 html, body{
     height: 100%;
@@ -160,7 +167,8 @@ div.main-task-viewer{
     display: none;
     grid-template-rows: 0.2fr 3fr 0.4fr;
     padding: 5px;
-    gap: 20px;
+    gap: 15px;
+    padding: 20px;
 }
 
 div.main-heading{
@@ -223,6 +231,54 @@ div.addbtn{
     width: 100%;
     display: flex;
     justify-content: flex-end;
+}
+div.taskproject{
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+}
+div.todoinfo{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+div.todoinfo > img{
+    width: 20px;
+    opacity: 0.4;
+}
+div.todoinfo > h4{
+    opacity: 0.4;
+    font-size: 0.9rem;
+}
+div.taskheading {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+div.taskheading > h2{
+    text-align: center;
+}
+hr{
+    border: 1px solid var(--heading);
+    width: 80%;
+}
+p.thenote{
+    font-size: 1.2rem;
+}
+div.taskControl{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+img.backToAll{
+    width: 30px;
+    cursor: pointer;
+}
+p.date{
+    border: 1px solid var(--heading);
+    padding: 5px;
+    border-radius: 10px;
 }
 div.dailog-container{
     display: flex;
@@ -302,7 +358,6 @@ form.editForm > input{
     height: 2.4rem;
     padding: 10px;
     border-radius: 10px;
-    background-color: #3d3c3c;
     color: var(--color-fg);
     border: 1px solid var(--color-bg);
 }
@@ -559,6 +614,26 @@ div.control > button.addATask{
     div.project-div{
         gap: 10px;
     }
+    div.taskheading > h2{
+        font-size: 2.5rem;
+    }
+    p.thenote{
+        font-size: 1.7rem;
+    }
+    div.todoinfo > img{
+        width: 40px;
+    }
+    div.todoinfo > h4{
+        font-size: 1.2rem;
+    }
+    img.backToAll{
+        width: 50px;
+    }
+    p.date{
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 1.4rem;
+    }
 }
 
 /* Laptops */
@@ -708,5 +783,27 @@ div.control > button.addATask{
     form.addForm > button,
     form.editForm > button{
         font-size: 1rem;
+    }
+    div.main-task-viewer{
+        width: 50%;
+        height: 80%;
+    }
+    p.thenote{
+        font-size: 1rem;
+    }
+    div.taskheading > h2{
+        font-size: 1.5rem;
+    }
+    p.date{
+        font-size: 0.8rem;
+    }
+    div.todoinfo > h4{
+        font-size: 0.8rem;
+    }
+    div.todoinfo > img{
+        width: 15px;
+    }
+    img.backToAll{
+        width: 2rem;
     }
 }

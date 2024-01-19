@@ -3,7 +3,7 @@ function localDb(){
 
     function saveToDb(dbName, dbValue){
 
-        window.localStorage.setItem(`${dbName}`, JSON.stringify(dbValue));
+        window.localStorage.setItem(dbName, JSON.stringify(dbValue));
     }
     function getFromDb(dbName){
         const obj = window.localStorage.getItem(dbName)
