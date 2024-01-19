@@ -44,6 +44,9 @@ form.editForm > input{
 p.thetasktitle{
     cursor: pointer;
 }
+div.main-task-viewer *p{
+    color: var(--color-fg);
+}
 @media (prefers-color-scheme: light){
     :root{
         --color-bg: #cfcdcd;
@@ -77,7 +80,9 @@ p.thetasktitle{
     form.editForm > input{
         background-color: #d1cdcd; 
     }
-    div.taskheading > h2{
+    div.taskheading > h2,
+    p.thenote,
+    p.date{
         color: var(--color-bg);
     }
 }

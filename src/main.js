@@ -85,6 +85,7 @@ function writeToMain(){
 
         const note = document.createElement('p');
         note.innerText = todo.note;
+        note.className = "thenote"
 
         noteDiv.appendChild(note);
 
