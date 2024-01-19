@@ -92,7 +92,9 @@ let tags;
 
 
 
-
+/* IIFE that creates the page on each load, getting the data stored in the localstorage
+    accing each new element and adding necessary eveent on every load
+*/
 (function(){
     const thisprojects = render();
     removeAllChildNodes(content);
@@ -109,16 +111,21 @@ let tags;
 
 
 // Event listeners
-menuBtn.addEventListener('click', () => {
+menuBtn.addEventListener('click', openMenu);
+close.addEventListener('click', closeMenu);
+
+
+// open the side bar on the mobile and tab viw
+function openMenu(){
     dialog.show();
     overlay.style.display = 'block'
     menuBtn.style.display = "none";
     mainContent.style.display = 'none';
     taskViewer.style.display = "none";
     close.style.display = "flex";
-});
-close.addEventListener('click', closeMenu);
+}
 
+//closes the side
 function closeMenu(){
     dialog.close();
     overlay.style.display = 'none'
@@ -126,6 +133,8 @@ function closeMenu(){
     mainContent.style.display = 'grid';
     close.style.display = "none";
 }
+
+// Filters the main view based on the filter options
 filterTodos.forEach(todoFilter => {
     
         todoFilter.addEventListener('click', () => {
@@ -315,6 +324,7 @@ function del(e){
     addListerner(editBtn, "click", editModal)
 }
 
+//Closing the add project dialog
 closeAdd.addEventListener('click', (e) => {
     addProjectDialog.close();
     dialog.close();
@@ -324,6 +334,7 @@ closeAdd.addEventListener('click', (e) => {
     mainContent.style.display = 'grid';
 });
 
+//Closing the edit project dialog
 closeEdit.addEventListener('click', (e) => {
     editDialog.close();
     dialog.close();
@@ -333,14 +344,22 @@ closeEdit.addEventListener('click', (e) => {
     overlay.style.display = 'none';
 });
 
-addTask.addEventListener('click', (e) => {
+
+addTask.addEventListener('click', addTheTask);
+
+// Opens the add task dialog
+function addTheTask(){
     addTaskDialog.showModal();
     overlay.style.display = 'block';
     addTaskProject();
     mainContent.style.display = 'none';
-});
+}
 
-addATaskBtn.addEventListener('click', (e) => {
+// Event listener for collect task details
+addATaskBtn.addEventListener('click', collectTask);
+
+// Creates tood object 
+function collectTask(e){
     e.preventDefault();
     taskProject = document.querySelector('#theProjects');
     const theTitle = title.value;
@@ -363,8 +382,9 @@ addATaskBtn.addEventListener('click', (e) => {
         addListerner(delTask, "click", deleteTheTask)
         overlay.style.display = 'none';     
     }
-});
+}
 
+// Adds the available projects to the form select element as options for the user
 function addTaskProject(){
     removeAllChildNodes(taskProject);
     availableProjects.forEach(project => {
@@ -375,6 +395,7 @@ function addTaskProject(){
     });
 }
 
+// Displays more details on each task
 function showTask(e){
     const title = e.target.textContent;
     mainContent.style.display = "none";
@@ -389,6 +410,7 @@ function showTask(e){
     });
 }
 
+// Closes the more screen on each task
 function goBack(e){
     taskViewer.style.display = "none";
     mainContent.style.display = "grid";
