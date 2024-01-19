@@ -103,7 +103,6 @@ function openMenu(){
     overlay.style.display = 'block'
     menuBtn.style.display = "none";
     mainContent.style.display = 'none';
-    taskViewer.style.display = "none";
     close.style.display = "flex";
 }
 
@@ -379,6 +378,7 @@ function addTaskProject(){
 
 // Displays more details on each task
 function showTask(e){
+    menuBtn.style.display = "none";
     const title = e.target.textContent;
     mainContent.style.display = "none";
     taskViewer.style.display = "grid";
