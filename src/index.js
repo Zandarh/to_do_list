@@ -5,24 +5,6 @@ import {getProject, deleteProject, editProject, addProject, renderProjects} from
 import {writeAllTask, showEachTask} from './main.js';
 import { removeAllChildNodes } from './create.js';
 
-(function(){
-    window.localStorage.setItem("count", "1")
-    const todosTitle = "Click To Learn More";
-    const todoNote = `-You can add Task and segment them into projects.
-
-    -Click each task title to see more details about the task
-
-    -Click the plus button to add new projects.
-
-    -Checkout tasks as completed and deleted them afterwards.
-
-    -Thank you`;
-    const date = "2024-1-19";
-    if(localStorage.getItem("count") !== "1"){
-        createTodo(todosTitle, todoNote, date, "default");
-    }
-})();
-
 //Dome Cache
 const menuBtn = document.querySelector('.menuBtn');
 const close = document.querySelector('#close');
