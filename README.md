@@ -1,7 +1,9 @@
 # ToDo-List-App
 
 ## Description
-Welcome to our project! This is a Todo list App made in Vanilla JavaScript, HTML and CSS. It allows users to quickly and easily add, delete, and update events and tasks. With this App, users can effortlessly manage their tasks and events, helping them stay organized and on top of their to-do list. We hope you enjoy and we look forward to your contributions!
+Welcome to our project! This is a Todo list App made in Vanilla JavaScript, HTML and CSS, and Webpack as a bundler. 
+
+It allows users to quickly and easily add, delete, and update events and tasks. With this App, users can effortlessly manage their tasks and events, helping them stay organized and on top of their to-do list. We hope you enjoy and we look forward to your contributions!
 
 ## Contribution
 We welcome any and all contributions! Here are some ways you can get started:
