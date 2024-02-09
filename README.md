@@ -14,4 +14,4 @@ We welcome any and all contributions! Here are some ways you can get started:
 4. Documentation: If you see the need for some additional documentation, feel free to add some!
 
 ## Live Url
-[Click here (https://zandarh.github.io/to_do_list/)].
+[Click here ](https://zandarh.github.io/to_do_list/).
